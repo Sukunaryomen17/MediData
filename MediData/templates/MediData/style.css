@@ -1,0 +1,333 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  background: #181818;
+  border-right: 1px solid #2a2a2a;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: width 0.3s ease;
+}
+
+/* Collapsed sidebar (mini mode) */
+.sidebar.collapsed {
+  width: 80px;
+  padding: 12px 10px; /* tighter padding for alignment */
+}
+
+.toggle-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border: none;
+  color: #111;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* hidden by default */
+  transform: scale(0.8);
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* Show button ONLY when hovering logo */
+.logo-wrapper:hover .toggle-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.toggle-btn:hover {
+  background: #f1f1f1;
+}
+
+.toggle-btn:hover {
+  background: #f1f1f1;
+  transform: scale(1.05);
+}
+
+.toggle-btn:hover {
+  background: #1664c4;
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+}
+
+/* Align logo perfectly with icons when collapsed */
+.sidebar.collapsed .logo-wrapper {
+  justify-content: center;
+  margin-left: 0;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 25px auto;
+  padding: 10px;
+  border-radius: 20px;
+
+  /* Transparent base (remove card look for cleaner logo) */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  /* Make black background disappear visually */
+  mix-blend-mode: screen;
+
+  object-fit: contain;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Subtle glow (clean, not heavy) */
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  filter: blur(18px);
+  opacity: 0.35;
+  z-index: -1;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+/* Collapse version */
+.sidebar.collapsed .logo {
+  width: 36px; /* match icon size */
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Animated gradient glow */
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 24px;
+  background: linear-gradient(270deg, #4cc9f0, #7b2ff7, #4cc9f0);
+  background-size: 400% 400%;
+  animation: gradientMove 6s ease infinite;
+  z-index: -1;
+  filter: blur(14px);
+  opacity: 0.7;
+}
+
+/* Shine effect */
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.logo:hover::after {
+  opacity: 1;
+}
+
+/* Hover premium lift */
+.logo:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.9),
+    0 0 25px rgba(76,201,240,0.35);
+}
+
+/* Collapse version */
+.sidebar.collapsed .logo {
+  width: 36px; /* match icon size */
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Gradient glow aura */
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+/* Hover premium effect */
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 15px 40px rgba(0,0,0,0.8),
+    0 0 20px rgba(76,201,240,0.3);
+}
+
+/* Improve look when collapsed */
+.sidebar.collapsed .logo {
+  width: 36px; /* match icon size */
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Improve look when collapsed */
+.sidebar.collapsed .logo {
+  width: 36px; /* match icon size */
+  padding: 0;
+  margin: 0 auto;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Make icons consistent */
+.nav a i {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Center icons in collapsed mode */
+.sidebar.collapsed .nav a {
+  justify-content: center;
+}
+
+.nav a:hover {
+  color: #4cc9f0;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed .label {
+  display: none;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  background: #1f7feb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 600px;
+  background: #2a2a2a;
+  padding: 14px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #333;
+}
+
+.search-box input[type="text"] {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.icon-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #1f7feb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: #1664c4;
+}
+
+.plus-btn {
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    height: 100%;
+    z-index: 10;
+  }
+}
