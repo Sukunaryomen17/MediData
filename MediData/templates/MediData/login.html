@@ -1,0 +1,23 @@
+<h2>Login to MediData</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    {% if form.errors %}
+        <p style="color: red;">Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    <div>
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
+    <br>
+    <div>
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
