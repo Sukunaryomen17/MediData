@@ -1,0 +1,20 @@
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database (even though you use Neon, keep this for safety)
+*.sqlite3
+
+# Secrets
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
