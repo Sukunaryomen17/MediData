@@ -131,3 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Where to go after successful login
+LOGIN_REDIRECT_URL = 'home'
+
+# Where to go if a user tries to access a protected page without logging in
+LOGOUT_REDIRECT_URL = 'home'
+
