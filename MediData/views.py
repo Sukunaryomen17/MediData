@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 from .models import Profile
 
@@ -6,13 +6,17 @@ from .models import Profile
 # MediData/views.py
 
 def home(request):
-    # This is where you'll eventually add: 
-    # data = MyModel.objects.all()
+    if request.user.is_authenticated:
+        display_title = f"Dashboard for {request.user.first_name}"
+    else:
+        display_title = "Welcome to MediData"
+
     context = {
-        'title': 'Welcome to MediData',
+        'title': display_title,
         'status': 'System Online',
     }
     return render(request, 'MediData/home.html', context)
+
 
 def register(request):
     if request.method == 'POST':

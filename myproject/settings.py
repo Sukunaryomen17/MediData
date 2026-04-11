@@ -136,5 +136,5 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = 'home'
 
 # Where to go if a user tries to access a protected page without logging in
-LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'home'
 
