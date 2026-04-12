@@ -19,3 +19,7 @@ class RegistrationForm(forms.ModelForm):
         if cleaned_data.get("password") != cleaned_data.get("confirm_password"):
             raise forms.ValidationError("Passwords do not match!")
         return cleaned_data
+
+class PDFUploadForm(forms.Form):
+    # Allow PDF files specifically
+    file = forms.FileField(label="Upload PDF Scan")
