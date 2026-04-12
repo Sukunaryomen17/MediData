@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-*u)6l2cnmb7fz5c_rmll_422s#g84k7pbm(wa4vhu0#^wzc*dz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Allow Vercel domains
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -147,8 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://your-project-name.vercel.app',
-    'https://*.vercel.app',
+    'https://*.railway.app',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
