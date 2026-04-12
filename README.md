@@ -2,6 +2,9 @@
 
 A Django-based medical data management application with user authentication and profile management.
 
+# LiveDemo
+https://medi-data.vercel.app/
+
 ## Features
 
 - **User Authentication**: Secure registration and login system
