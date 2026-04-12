@@ -568,50 +568,34 @@ try {
   const formData = new FormData();
   formData.append('file', fileToSend);
 
-  // Call ML API directly from browser
-  const response = await fetch("http://13.206.108.88:8000/extract-from-file", {
+  const response = await fetch("{% url 'analyse_pdf' %}", {
     method: 'POST',
+    headers: { 'X-CSRFToken': getCookie('csrftoken') },
     body: formData,
   });
 
   removeTyping(typingId);
 
   const rawText = await response.text();
-  let raw_json;
+  let json;
   try {
-    raw_json = JSON.parse(rawText);
+    json = JSON.parse(rawText);
   } catch(e) {
-    appendError('Invalid response from server.');
+    appendError('Server returned unexpected response.');
     return;
   }
 
-  if (!raw_json.is_success) {
-    appendError(raw_json.error || 'Analysis failed.');
+  if (!response.ok || json.error) {
+    appendError(json.error || 'Something went wrong. Please try again.');
     return;
   }
 
-  const data = raw_json.data;
-  const all_items = [];
-  for (const page of data.pagewise_line_items || []) {
-    for (const item of page.bill_items || []) {
-      all_items.push({
-        item_name: item.item_name,
-        quantity:  item.item_quantity,
-        rate:      item.item_rate,
-        amount:    item.item_amount,
-      });
-    }
-  }
-
-  renderResults({
-    line_items:  all_items,
-    final_total: data.grand_total,
-    error_flag:  raw_json.error,
-  }, fileToSend.name);
+  renderResults(json.data, json.filename);
 
 } catch (err) {
   removeTyping(typingId);
   appendError('Network error: ' + err.message);
+}
 }
   }
 
