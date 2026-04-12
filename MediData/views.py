@@ -14,9 +14,12 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 import json
 
-@login_required
+
 @require_POST
 def analyse_pdf(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'error': 'You must be logged in to analyse a PDF.'}, status=401)
+
     form = PDFUploadForm(request.POST, request.FILES)
     if not form.is_valid():
         return JsonResponse({'error': 'Invalid form submission.'}, status=400)
