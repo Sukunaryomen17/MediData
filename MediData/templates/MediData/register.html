@@ -1,7 +1,156 @@
-<h2>Create your MediData Account</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
-<p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - MediData</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d0d0d;
+      color: white;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 400px;
+      background: #181818;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .input-group {
+      background: #2a2a2a;
+      border-radius: 30px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .input-group i {
+      color: #888;
+    }
+
+    .input-group input {
+      background: none;
+      border: none;
+      outline: none;
+      color: white;
+      flex: 1;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(135deg, #1f7feb, #00c6ff);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(31, 127, 235, 0.5);
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .links a {
+      color: #1f7feb;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: #ff4d4d;
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    /* Remove default Django spacing */
+    form p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Logo -->
+    <img src="{% static 'MediData/icons/MediData.png' %}" class="logo" />
+
+    <h2>Create your MediData Account</h2>
+
+    <!-- FORM -->
+    <form method="POST">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="input-group">
+          {% if field.name == "username" %}
+            <i class="fa-solid fa-user"></i>
+          {% elif field.name == "email" %}
+            <i class="fa-solid fa-envelope"></i>
+          {% elif "password" in field.name %}
+            <i class="fa-solid fa-lock"></i>
+          {% else %}
+            <i class="fa-solid fa-circle"></i>
+          {% endif %}
+
+          {{ field }}
+        </div>
+
+        {% if field.errors %}
+          <div class="error">
+            {{ field.errors }}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <button type="submit" class="btn">Register</button>
+    </form>
+
+    <!-- Links -->
+    <div class="links">
+      Already have an account? <a href="{% url 'login' %}">Login</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -7,3 +7,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+class AnalysisResult(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    pdf_file = models.FileField(upload_to='invoices/')
+    original_filename = models.CharField(max_length=255, blank=True)  # ← add this
+    result = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)

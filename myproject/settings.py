@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-*u)6l2cnmb7fz5c_rmll_422s#g84k7pbm(wa4vhu0#^wzc*dz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow Vercel domains
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -137,4 +138,10 @@ LOGIN_REDIRECT_URL = 'home'
 
 # Where to go if a user tries to access a protected page without logging in
 LOGOUT_REDIRECT_URL = 'home'
+
+# This is the filesystem path (D:\byteverse\MediData\media)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# This is the URL path (http://localhost:8000/media/...)
+MEDIA_URL = '/media/'
 
