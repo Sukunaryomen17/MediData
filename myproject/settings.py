@@ -146,7 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
+    'https://*.onrender.com',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
