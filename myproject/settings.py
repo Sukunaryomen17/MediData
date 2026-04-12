@@ -146,3 +146,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # This is the URL path (http://localhost:8000/media/...)
 MEDIA_URL = '/media/'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://your-project-name.vercel.app',
+    'https://*.vercel.app',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
