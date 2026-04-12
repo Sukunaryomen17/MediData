@@ -3,7 +3,7 @@
 A Django-based medical data management application with user authentication and profile management.
 
 # LiveDemo
-https://medi-data.vercel.app/
+https://medical-bill-extract-2ashatbzcxn9fkhejaxboe.streamlit.app/
 
 ## Features
 
