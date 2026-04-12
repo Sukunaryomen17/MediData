@@ -6,7 +6,7 @@ from .forms import RegistrationForm, PDFUploadForm
 from .models import Profile, AnalysisResult
 import requests
 
-MODEL_API_URL = "http://13.206.108.88:8000/extract-from-file"
+MODEL_API_URL = "https://13.206.108.88:8000/extract-from-file"
 
 @require_POST
 def analyse_pdf(request):
