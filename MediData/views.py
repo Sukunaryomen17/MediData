@@ -21,7 +21,7 @@ def analyse_pdf(request):
 
     try:
         files = {'file': (pdf_file.name, pdf_file.read(), 'application/pdf')}
-        response = requests.post(MODEL_API_URL, files=files, timeout=60)
+        response = requests.post(MODEL_API_URL, files=files, timeout=300)
         response.raise_for_status()
         raw_json = response.json()
     except requests.Timeout:
