@@ -576,7 +576,15 @@
 
       removeTyping(typingId);
 
-      const json = await response.json();
+      const rawText = await response.text();
+      console.log('RAW RESPONSE:', rawText);
+      let json;
+      try {
+        json = JSON.parse(rawText);
+      } catch(e) {
+        appendError('Server returned: ' + rawText.substring(0, 300));
+        return;
+      }
 
       if (!response.ok || json.error) {
         appendError(json.error || 'Something went wrong. Please try again.');
