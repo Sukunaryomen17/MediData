@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - MediData</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d0d0d;
+      color: white;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 380px;
+      background: #181818;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .input-group {
+      background: #2a2a2a;
+      border-radius: 30px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .input-group i {
+      color: #888;
+    }
+
+    .input-group input {
+      background: none;
+      border: none;
+      outline: none;
+      color: white;
+      flex: 1;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(135deg, #1f7feb, #00c6ff);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(31, 127, 235, 0.5);
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .links a {
+      color: #1f7feb;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: #ff4d4d;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Logo -->
+    <img src="{% static 'MediData/icons/MediData.png' %}" class="logo" />
+
+    <h2>Login to MediData</h2>
+
+    <!-- FORM -->
+    <form method="POST">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <p class="error">Your username and password didn't match.</p>
+      {% endif %}
+
+      <!-- Username -->
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        {{ form.username }}
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        {{ form.password }}
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <!-- Links -->
+    <div class="links">
+      Don’t have an account? <a href="{% url 'register' %}">Register</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*u)6l2cnmb7fz5c_rmll_422s#g84k7pbm(wa4vhu0#^wzc*dz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,4 +130,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Where to go after successful login
+LOGIN_REDIRECT_URL = 'home'
+
+# Where to go if a user tries to access a protected page without logging in
+LOGOUT_REDIRECT_URL = 'home'
+
+# This is the filesystem path (D:\byteverse\MediData\media)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# This is the URL path (http://localhost:8000/media/...)
+MEDIA_URL = '/media/'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.onrender.com',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
